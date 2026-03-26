@@ -1,11 +1,11 @@
 /*****************************************************************************
-// File Name : Comments.cs
-// Author : John P. Doran
-// Creation Date : February 19, 2020
+// File Name : PlayerLook.cs
+// Author : Will Northrup
+// Creation Date : 3/24/2026
 //
-// Brief Description : This is a sample document that teaches students how to
-comment. Students have to follow this commenting style
-exactly so that they don't get points deducted.
+// Brief Description : This is a script that is attached to the camera. This
+script allows for the player to look around using the mouse, and having the
+movement be relative to the player looking direction.
 *****************************************************************************/
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -67,6 +67,9 @@ public class PlayerLook : MonoBehaviour
         transform.localEulerAngles = new Vector3(ClampAngle(transform.localEulerAngles.x, minAngle, maxAngle), 0, 0);
     }
 
+    /// <summary>
+    /// Disconnects the mouse input action when destroyed
+    /// </summary>
     private void OnDestroy()
     {
         mouseLook.performed -= MouseLookPerformed;

@@ -1,11 +1,10 @@
 /*****************************************************************************
-// File Name : Comments.cs
-// Author : John P. Doran
-// Creation Date : February 19, 2020
+// File Name : PlayerMove.cs
+// Author : Will Northrup
+// Creation Date : 3/24/2026
 //
-// Brief Description : This is a sample document that teaches students how to
-comment. Students have to follow this commenting style
-exactly so that they don't get points deducted.
+// Brief Description : This is a script that is attached to the player/slime
+game object. This script allows for movement using the WASD keys 
 *****************************************************************************/
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -21,7 +20,9 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float slowSpeed;
     private Rigidbody rb;
 
-
+    /// <summary>
+    /// Sets the inputs when the scene reloads
+    /// </summary>
     private void Awake()
     {
         move = InputSystem.actions.FindAction("Move");
@@ -30,16 +31,20 @@ public class PlayerMove : MonoBehaviour
         move.canceled += MoveCanceled;
     }
 
-
+    /// <summary>
+    /// Locks mouse in center of screen and hides it at start
+    /// </summary>
     void Start()
     {
         rb = GetComponent<Rigidbody>();
 
-        
-
         Cursor.lockState = CursorLockMode.Locked;
     }
 
+    /// <summary>
+    /// Reads the direction of input in x and z axis for player movement
+    /// </summary>
+    /// <param name="obj"></param>
     private void MovePerformed(InputAction.CallbackContext obj)
     {
         playerMovement.x = obj.ReadValue<Vector2>().x;
@@ -47,19 +52,26 @@ public class PlayerMove : MonoBehaviour
         isMoving = true;
     }
 
+    /// <summary>
+    /// Sets the player movement variable to zero
+    /// </summary>
+    /// <param name="obj"></param>
     private void MoveCanceled(InputAction.CallbackContext obj)
     {
         playerMovement = Vector3.zero;
         isMoving = false;
     }
 
+    /// <summary>
+    /// Allows the player to move with relative force, but clamps max and min speed of player
+    /// </summary>
     void Update()
     {
-        //new movement stuff
+        //testing new movement stuff
         //moveDirection = orientation.forward * playerMovement.z + orientation.right * playerMovement.x;
         //rb.AddForce(moveDirection.normalized * playerSpeed, ForceMode.Force);
 
-        //Old movement stuff
+        //Old movement stuff that adds relative force to the player
         rb.AddRelativeForce(new Vector3(playerMovement.x * playerSpeed, 0.0f, playerMovement.z * playerSpeed));
 
         //clamps the player speed
@@ -76,6 +88,9 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Disconnects the move input action when destroyed
+    /// </summary>
     private void OnDestroy()
     {
         move.performed -= MovePerformed;
