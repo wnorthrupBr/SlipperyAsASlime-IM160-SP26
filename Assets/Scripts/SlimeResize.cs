@@ -1,11 +1,11 @@
 /*****************************************************************************
-// File Name : Comments.cs
-// Author : John P. Doran
-// Creation Date : February 19, 2020
+// File Name : SlimeResize.cs
+// Author : Will Northrup
+// Creation Date : 3/24/2026
 //
-// Brief Description : This is a sample document that teaches students how to
-comment. Students have to follow this commenting style
-exactly so that they don't get points deducted.
+// Brief Description : This is a script that is attached to the player/slime
+game object. This script allows for the player to change the scale and mass 
+of the player/slime game object.
 *****************************************************************************/
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -48,6 +48,9 @@ public class SlimeResize : MonoBehaviour
     //DO NOT TOUCH
     private Vector3 velocity;
 
+    /// <summary>
+    /// Sets the inputs when the scene reloads
+    /// </summary>
     private void Awake()
     {
         //Increase scale inputs
@@ -72,6 +75,9 @@ public class SlimeResize : MonoBehaviour
         resetAllScale.performed += ResetAllScalePerformed;
     }
 
+    /// <summary>
+    /// Sets the initial slime mass and initial target scale on start
+    /// </summary>
     void Start()
     {
         slimeRb = GetComponent<Rigidbody>();
@@ -85,8 +91,13 @@ public class SlimeResize : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Decreases slime mass and scale on the Z axis when performed
+    /// </summary>
+    /// <param name="obj"></param>
     private void DecreaseZScalePerformed(InputAction.CallbackContext obj)
     {
+        //Decreases the target scale and mass if it is greater than the scale minimum
         if (currentPlayerScale.z >= zScaleMin)
         {
             targetScale = new Vector3(currentPlayerScale.x, currentPlayerScale.y, currentPlayerScale.z *
@@ -103,8 +114,13 @@ public class SlimeResize : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Decreases slime mass and scale on the Y axis when performed
+    /// </summary>
+    /// <param name="obj"></param>
     private void DecreaseYScalePerformed(InputAction.CallbackContext obj)
     {
+        //Decreases the target scale and mass if it is greater than the scale minimum
         if (currentPlayerScale.y >= yScaleMin)
         {
             targetScale = new Vector3(currentPlayerScale.x, currentPlayerScale.y * scaleDecreaseAmnt,
@@ -121,8 +137,13 @@ public class SlimeResize : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Decreases slime mass and scale on the X axis when performed
+    /// </summary>
+    /// <param name="obj"></param>
     private void DecreaseXScalePerformed(InputAction.CallbackContext obj)
     {
+        //Decreases the target scale and mass if it is greater than the scale minimum
         if (currentPlayerScale.x >= xScaleMin)
         {
             targetScale = new Vector3(currentPlayerScale.x * scaleDecreaseAmnt, currentPlayerScale.y,
@@ -140,6 +161,10 @@ public class SlimeResize : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Resets the target scale and slime mass to their default values
+    /// </summary>
+    /// <param name="obj"></param>
     private void ResetAllScalePerformed(InputAction.CallbackContext obj)
     {
         targetScale = new Vector3(1.5f, 1.5f, 1.5f);
@@ -149,8 +174,13 @@ public class SlimeResize : MonoBehaviour
         currentSlimeMassZ = 1;
     }
 
+    /// <summary>
+    /// Increases slime mass and scale on the Z axis when performed
+    /// </summary>
+    /// <param name="obj"></param>
     private void IncreaseZScalePerformed(InputAction.CallbackContext obj)
     {
+        //Increases the target scale and mass if it is less than the scale maximum
         if (currentPlayerScale.z <= zScaleMax)
         {
             targetScale = new Vector3(currentPlayerScale.x, currentPlayerScale.y, currentPlayerScale.z *
@@ -168,8 +198,13 @@ public class SlimeResize : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Increases slime mass and scale on the Y axis when performed
+    /// </summary>
+    /// <param name="obj"></param>
     private void IncreaseYScalePerformed(InputAction.CallbackContext obj)
     {
+        //Increases the target scale and mass if it is less than the scale maximum
         if (currentPlayerScale.y <= yScaleMax)
         {
             targetScale = new Vector3(currentPlayerScale.x, currentPlayerScale.y * scaleIncreaseAmnt,
@@ -187,8 +222,13 @@ public class SlimeResize : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Increases slime mass and scale on the X axis when performed
+    /// </summary>
+    /// <param name="obj"></param>
     private void IncreaseXScalePerformed(InputAction.CallbackContext obj)
     {
+        //Increases the target scale and mass if it is less than the scale maximum
         if (currentPlayerScale.x <= xScaleMax)
         {
             targetScale = new Vector3(currentPlayerScale.x * scaleIncreaseAmnt, currentPlayerScale.y,
@@ -206,11 +246,18 @@ public class SlimeResize : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Allows for the slime scale to smoothly grow and shrink to the target scale
+    /// </summary>
     private void FixedUpdate()
     {
         transform.localScale = Vector3.SmoothDamp(transform.localScale, targetScale, ref velocity, 0.5f);
     }
 
+    /// <summary>
+    /// Updates the mass and scale values from the performed actions, also clamps the mass and scale of the slime to
+    /// not go beyond a specific point
+    /// </summary>
     void Update()
     {
         totalSlimeMassMin = slimeMassMinX + slimeMassMinY + slimeMassMinZ;
@@ -229,6 +276,9 @@ public class SlimeResize : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// This is a function that resets the slime scale and mass to default values when called
+    /// </summary>
     public void ResetSlimeScaleAndMass()
     {
         targetScale = new Vector3(1.5f, 1.5f, 1.5f);
@@ -238,6 +288,9 @@ public class SlimeResize : MonoBehaviour
         currentSlimeMassZ = 1;
     }
 
+    /// <summary>
+    /// Disconnects the input actions for the scale increases and decreases when destroyed.
+    /// </summary>
     private void OnDestroy()
     {
         increaseXScale.performed -= IncreaseXScalePerformed;
