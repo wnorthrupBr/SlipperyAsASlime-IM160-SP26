@@ -61,7 +61,7 @@ public class PlayerLookTwo : MonoBehaviour
         orientation.forward = viewDir.normalized;
 
         //updates the inputDir variable to have the player movement be relative to the orientation
-        Vector3 inputDir = orientation.forward * playerMovement.y + orientation.right * playerMovement.x;
+        Vector3 inputDir = orientation.forward * playerMovement.z + orientation.right * playerMovement.x;
 
         //if the inputDir variable is not equal to zero, the player object will rotate to face in that direction
         if (inputDir != Vector3.zero)

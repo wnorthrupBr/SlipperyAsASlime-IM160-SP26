@@ -11,14 +11,16 @@ using UnityEngine.InputSystem;
 
 public class PlayerMove : MonoBehaviour
 {
-    //[SerializeField] private Transform orientation;
+    [SerializeField] private Transform orientation;
     private InputAction move;
     private Vector3 playerMovement;
-    //private Vector3 moveDirection;
+    private Vector3 moveDirection;
     private bool isMoving;
     [SerializeField] private float playerSpeed;
     [SerializeField] private float slowSpeed;
     private Rigidbody rb;
+
+    public float PlayerSpeed { get => playerSpeed; set => playerSpeed = value; }
 
     /// <summary>
     /// Sets the inputs when the scene reloads
@@ -68,11 +70,11 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         //testing new movement stuff
-        //moveDirection = orientation.forward * playerMovement.z + orientation.right * playerMovement.x;
-        //rb.AddForce(moveDirection.normalized * playerSpeed, ForceMode.Force);
+        moveDirection = orientation.forward * playerMovement.z + orientation.right * playerMovement.x;
+        rb.AddForce(moveDirection.normalized * playerSpeed, ForceMode.Force);
 
         //Old movement stuff that adds relative force to the player
-        rb.AddRelativeForce(new Vector3(playerMovement.x * playerSpeed, 0.0f, playerMovement.z * playerSpeed));
+        //rb.AddRelativeForce(new Vector3(playerMovement.x * playerSpeed, 0.0f, playerMovement.z * playerSpeed));
 
         //clamps the player speed
         rb.linearVelocity = new Vector3(Mathf.Clamp(rb.linearVelocity.x, -playerSpeed, playerSpeed),
