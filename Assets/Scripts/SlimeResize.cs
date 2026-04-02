@@ -12,9 +12,24 @@ using UnityEngine.InputSystem;
 
 public class SlimeResize : MonoBehaviour
 {
+    private PlayerMove playerMove;
     private Rigidbody slimeRb;
     private Vector3 currentPlayerScale;
     private Vector3 targetScale;
+    [SerializeField] private float currentTotalPlayerSpeed;
+    [SerializeField] private float currentPlayerSpeedX;
+    [SerializeField] private float currentPlayerSpeedY;
+    [SerializeField] private float currentPlayerSpeedZ;
+    //[SerializeField] private float playerSpeedMax;
+    //[SerializeField] private float playerSpeedMin;
+    [SerializeField] private float xPlayerSpeedMax;
+    [SerializeField] private float xPlayerSpeedMin;
+    [SerializeField] private float yPlayerSpeedMax;
+    [SerializeField] private float yPlayerSpeedMin;
+    [SerializeField] private float zPlayerSpeedMax;
+    [SerializeField] private float zPlayerSpeedMin;
+    private float totalPlayerSpeedMin;
+    private float totalPlayerSpeedMax;
     [SerializeField] private float currentTotalSlimeMass;
     [SerializeField] private float currentSlimeMassX;
     [SerializeField] private float currentSlimeMassY;
@@ -43,7 +58,9 @@ public class SlimeResize : MonoBehaviour
     [SerializeField] private float slimeMassMaxZ;
     [SerializeField] private float slimeMassMinZ;
     [SerializeField] private float massChangeAmnt;
+    [SerializeField] private float speedChangeAmnt;
     [SerializeField] private float originalSlimeMass;
+    [SerializeField] private float originalPlayerSpeed;
     
     //DO NOT TOUCH
     private Vector3 velocity;
@@ -80,6 +97,7 @@ public class SlimeResize : MonoBehaviour
     /// </summary>
     void Start()
     {
+        playerMove = GetComponent<PlayerMove>();
         slimeRb = GetComponent<Rigidbody>();
         currentPlayerScale = transform.localScale;
         currentTotalSlimeMass = slimeRb.mass;
@@ -87,7 +105,10 @@ public class SlimeResize : MonoBehaviour
         currentSlimeMassY = 1.0f;
         currentSlimeMassX = 1.0f;
         targetScale = new Vector3(1.5f, 1.5f, 1.5f);
-
+        currentTotalPlayerSpeed = playerMove.PlayerSpeed;
+        currentPlayerSpeedZ = 7;
+        currentPlayerSpeedY = 7;
+        currentPlayerSpeedX = 7;
         
     }
 
@@ -106,11 +127,16 @@ public class SlimeResize : MonoBehaviour
             currentSlimeMassZ -= massChangeAmnt;
 
             currentTotalSlimeMass = currentSlimeMassZ + currentSlimeMassX + currentSlimeMassY;
+
+            currentPlayerSpeedZ -= speedChangeAmnt;
+
+            currentTotalPlayerSpeed = currentPlayerSpeedZ + currentPlayerSpeedX + currentPlayerSpeedY;
         }
         else if (currentPlayerScale.z < zScaleMin)
         {
             currentPlayerScale.z = zScaleMin;
             currentTotalSlimeMass = slimeMassMinZ + currentSlimeMassX + currentSlimeMassY;
+            currentTotalPlayerSpeed = zPlayerSpeedMin + currentPlayerSpeedX + currentPlayerSpeedY;
         }
     }
 
@@ -129,6 +155,10 @@ public class SlimeResize : MonoBehaviour
             currentSlimeMassY -= massChangeAmnt;
 
             currentTotalSlimeMass = currentSlimeMassZ + currentSlimeMassX + currentSlimeMassY;
+
+            currentPlayerSpeedY -= speedChangeAmnt;
+
+            currentTotalPlayerSpeed = currentPlayerSpeedZ + currentPlayerSpeedX + currentPlayerSpeedY;
         }
         else if (currentPlayerScale.y < yScaleMin)
         {
@@ -152,6 +182,10 @@ public class SlimeResize : MonoBehaviour
             currentSlimeMassX -= massChangeAmnt;
 
             currentTotalSlimeMass = currentSlimeMassZ + currentSlimeMassX + currentSlimeMassY;
+
+            currentPlayerSpeedX -= speedChangeAmnt;
+
+            currentTotalPlayerSpeed = currentPlayerSpeedZ + currentPlayerSpeedX + currentPlayerSpeedY;
         }
         else if (currentPlayerScale.x < xScaleMin)
         {
@@ -172,6 +206,11 @@ public class SlimeResize : MonoBehaviour
         currentSlimeMassY = 1;
         currentSlimeMassX = 1;
         currentSlimeMassZ = 1;
+        
+        currentPlayerSpeedX = 7;
+        currentPlayerSpeedZ = 7;
+        currentPlayerSpeedY = 7;
+        currentTotalPlayerSpeed = originalPlayerSpeed;
     }
 
     /// <summary>
@@ -189,6 +228,10 @@ public class SlimeResize : MonoBehaviour
             currentSlimeMassZ += massChangeAmnt;
 
             currentTotalSlimeMass = currentSlimeMassZ + currentSlimeMassX + currentSlimeMassY;
+
+            currentPlayerSpeedZ += speedChangeAmnt;
+
+            currentTotalPlayerSpeed = currentPlayerSpeedZ + currentPlayerSpeedX + currentPlayerSpeedY;
         }
         else if (currentPlayerScale.z > zScaleMax)
         {
@@ -213,6 +256,10 @@ public class SlimeResize : MonoBehaviour
             currentSlimeMassY += massChangeAmnt;
 
             currentTotalSlimeMass = currentSlimeMassZ + currentSlimeMassX + currentSlimeMassY;
+
+            currentPlayerSpeedY += speedChangeAmnt;
+
+            currentTotalPlayerSpeed = currentPlayerSpeedZ + currentPlayerSpeedX + currentPlayerSpeedY;
         }
         else if (currentPlayerScale.y > yScaleMax)
         {
@@ -237,6 +284,10 @@ public class SlimeResize : MonoBehaviour
             currentSlimeMassX += massChangeAmnt;
 
             currentTotalSlimeMass = currentSlimeMassZ + currentSlimeMassX + currentSlimeMassY;
+
+            currentPlayerSpeedX += speedChangeAmnt;
+
+            currentTotalPlayerSpeed = currentPlayerSpeedZ + currentPlayerSpeedX + currentPlayerSpeedY;
         }
         else if (currentPlayerScale.z >  xScaleMax)
         {
@@ -263,6 +314,9 @@ public class SlimeResize : MonoBehaviour
         totalSlimeMassMin = slimeMassMinX + slimeMassMinY + slimeMassMinZ;
         totalSlimeMassMax = slimeMassMaxX + slimeMassMaxY + slimeMassMaxZ;
 
+        totalPlayerSpeedMin = xPlayerSpeedMin + yPlayerSpeedMin + zPlayerSpeedMin;
+        totalPlayerSpeedMax = xPlayerSpeedMax + yPlayerSpeedMax + zPlayerSpeedMax;
+
         transform.localScale = new Vector3(Mathf.Clamp(transform.localScale.x, xScaleMin, xScaleMax), 
             Mathf.Clamp(transform.localScale.y, yScaleMin, yScaleMax), Mathf.Clamp(transform.localScale.z, zScaleMin,
             zScaleMax));
@@ -271,9 +325,14 @@ public class SlimeResize : MonoBehaviour
         currentSlimeMassX = Mathf.Clamp(currentSlimeMassX, slimeMassMinX, slimeMassMaxX);
         currentSlimeMassY = Mathf.Clamp(currentSlimeMassY, slimeMassMinY, slimeMassMaxY);
         currentSlimeMassZ = Mathf.Clamp(currentSlimeMassZ, slimeMassMinZ, slimeMassMaxZ);
+        currentTotalPlayerSpeed = Mathf.Clamp(currentTotalPlayerSpeed, totalPlayerSpeedMin, totalPlayerSpeedMax);
+        currentPlayerSpeedX = Mathf.Clamp(currentPlayerSpeedX, xPlayerSpeedMin, xPlayerSpeedMax);
+        currentPlayerSpeedY = Mathf.Clamp(currentPlayerSpeedY, yPlayerSpeedMin, yPlayerSpeedMax);
+        currentPlayerSpeedZ = Mathf.Clamp(currentPlayerSpeedZ, zPlayerSpeedMin, zPlayerSpeedMax);
+        
         currentPlayerScale = transform.localScale;
         slimeRb.mass = currentTotalSlimeMass;
-
+        playerMove.PlayerSpeed = currentTotalPlayerSpeed;
     }
 
     /// <summary>
@@ -286,6 +345,11 @@ public class SlimeResize : MonoBehaviour
         currentSlimeMassY = 1;
         currentSlimeMassX = 1;
         currentSlimeMassZ = 1;
+
+        currentPlayerSpeedX = 7;
+        currentPlayerSpeedZ = 7;
+        currentPlayerSpeedY = 7;
+        currentTotalPlayerSpeed = originalPlayerSpeed;
     }
 
     /// <summary>
