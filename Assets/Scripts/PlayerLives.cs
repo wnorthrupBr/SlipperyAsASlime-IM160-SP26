@@ -88,6 +88,8 @@ public class PlayerLives : MonoBehaviour
         //reset player size
         slimeResize.ResetSlimeScaleAndMass();
 
+        isDead = false;
+
         //move player to spawnpoint
         this.gameObject.transform.root.position = spawnPoint;
     }
@@ -98,7 +100,7 @@ public class PlayerLives : MonoBehaviour
     /// </summary>
     void Update()
     {
-        if (transform.position.y < lowestYPos && !isDead)
+        if (this.transform.position.y < lowestYPos && !isDead)
         {
             Die();
         }
