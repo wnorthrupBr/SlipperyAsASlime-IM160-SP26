@@ -15,6 +15,8 @@ public class DoorTrigger : MonoBehaviour
     [SerializeField] GameObject door;
     private bool isOpened;
 
+    public GameObject Door { get => door; set => door = value; }
+
     /// <summary>
     /// Sets the isOpened bool to false at start;
     /// </summary>
@@ -39,7 +41,7 @@ public class DoorTrigger : MonoBehaviour
     /// if the trigger is no longer being touched, the door closes.
     /// </summary>
     /// <param name="other"></param>
-    private void OnTriggerExit(Collider other)
+    public virtual void OnTriggerExit(Collider other)
     {
         door.transform.position += new Vector3(0, -8, 0);
     }

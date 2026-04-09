@@ -13,7 +13,7 @@ public class ScreenController : MonoBehaviour
 {
     public void LoadFirstLevel()
     {
-        SceneManager.LoadScene("PrototypeScene");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     public void QuitGame()
     {
