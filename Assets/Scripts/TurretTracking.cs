@@ -36,6 +36,7 @@ public class TurretTracking : MonoBehaviour
         if (lastKnownPosition != target.transform.position)
         {
             lastKnownPosition = target.transform.position;
+            lastKnownPosition.y = -1f;
             lookAtRotation = Quaternion.LookRotation(lastKnownPosition - transform.position);
         }
 
