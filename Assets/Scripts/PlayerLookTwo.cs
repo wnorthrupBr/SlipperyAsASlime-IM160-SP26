@@ -53,7 +53,7 @@ public class PlayerLookTwo : MonoBehaviour
     /// <summary>
     /// This allows the player to move relative to the direction of their camera on the x and z axis
     /// </summary>
-    void Update()
+    private void FixedUpdate()
     {
         //updates the viewDir variable and sets the orientation to face that direction.
         Vector3 viewDir = playerObj.position - new Vector3(transform.position.x,
