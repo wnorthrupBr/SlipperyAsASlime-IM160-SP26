@@ -99,6 +99,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Turret
       objectReference: {fileID: 0}
+    - target: {fileID: 823056234174937796, guid: 96f1e5a3fb7832a4fb0f9e01eabacb60, type: 3}
+      propertyPath: trackingSpeed
+      value: 75
+      objectReference: {fileID: 0}
     - target: {fileID: 2672886056779323742, guid: 96f1e5a3fb7832a4fb0f9e01eabacb60, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
