@@ -33,7 +33,7 @@ public class DoorTrigger : MonoBehaviour
     {
         if (!isOpened)
         {
-            door.transform.position += new Vector3(0, 8, 0);
+            door.transform.position += new Vector3(0, 16, 0);
             this.GetComponent<MeshRenderer>().enabled = false;
         }
     }
