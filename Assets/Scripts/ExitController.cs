@@ -11,16 +11,18 @@ using UnityEngine.SceneManagement;
 
 public class ExitController : MonoBehaviour
 {
+    [SerializeField] private string wantedScene;
+
     /// <summary>
     /// loads next scene on contact with exit
     /// </summary>
     /// <param name="collidingObject"></param>
     private void OnTriggerEnter(Collider collidingObject)
     {
-        if (collidingObject.gameObject.name == "Player")
+        if (collidingObject.transform.CompareTag("Player"))
         {
             //loads the next scene in the Build Profiles->Scene List
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            SceneManager.LoadScene(wantedScene);
         }
     }
 }
