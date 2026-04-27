@@ -17,7 +17,7 @@ public class ExitController : MonoBehaviour
     /// <param name="collidingObject"></param>
     private void OnTriggerEnter(Collider collidingObject)
     {
-        if (collidingObject.gameObject.name == "Player")
+        if (collidingObject.transform.CompareTag("Player"))
         {
             //loads the next scene in the Build Profiles->Scene List
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
