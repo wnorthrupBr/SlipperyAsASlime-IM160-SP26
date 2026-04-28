@@ -10,6 +10,7 @@ using UnityEngine;
 
 public class CheckpointController : MonoBehaviour
 {
+    [SerializeField] private AudioSource activateSound;
     private bool isActivated;
     private PlayerLives playerLives;
 
@@ -34,6 +35,7 @@ public class CheckpointController : MonoBehaviour
             {
                 playerLives.SetSpawnPoint(this.transform.position);
                 isActivated = true;
+                activateSound.Play();
             }
         }
     }

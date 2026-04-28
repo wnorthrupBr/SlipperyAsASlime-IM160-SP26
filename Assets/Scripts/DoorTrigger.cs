@@ -12,7 +12,8 @@ using UnityEngine;
 
 public class DoorTrigger : MonoBehaviour
 {
-    [SerializeField] GameObject door;
+    [SerializeField] private AudioSource pressSound;
+    [SerializeField] private GameObject door;
     private bool isOpened;
 
     public GameObject Door { get => door; set => door = value; }
@@ -35,6 +36,7 @@ public class DoorTrigger : MonoBehaviour
         {
             door.transform.position += new Vector3(0, 16, 0);
             this.GetComponent<MeshRenderer>().enabled = false;
+            pressSound.Play();
         }
     }
 
@@ -44,7 +46,8 @@ public class DoorTrigger : MonoBehaviour
     /// <param name="other"></param>
     public virtual void OnTriggerExit(Collider other)
     {
-        door.transform.position += new Vector3(0, -8, 0);
+        door.transform.position += new Vector3(0, -16, 0);
         this.GetComponent<MeshRenderer>().enabled = true;
+        pressSound.Play();
     }
 }
