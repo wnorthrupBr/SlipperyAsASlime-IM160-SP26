@@ -97,7 +97,7 @@ public class PlayerLives : MonoBehaviour
         //move player to spawnpoint
         this.gameObject.transform.root.position = spawnPoint;
 
-        
+        respawnSound.Play();
     }
 
     /// <summary>
