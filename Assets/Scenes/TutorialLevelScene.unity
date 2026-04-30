@@ -1325,7 +1325,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14142136, y: 0, z: 0, w: 0.9899495}
+  m_LocalRotation: {x: 0.14142138, y: -1.3106182e-15, z: 1.872312e-16, w: 0.9899495}
   m_LocalPosition: {x: 0, y: 2.5, z: -6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3581,7 +3581,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 778203618}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14142136, y: -0, z: -0, w: 0.9899495}
+  m_LocalRotation: {x: 0.14142138, y: -1.3186279e-15, z: 2.4329878e-16, w: 0.9899495}
   m_LocalPosition: {x: 0, y: 2.5, z: -6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3644,7 +3644,7 @@ MonoBehaviour:
   Damping: {x: 0.5, y: 0.5}
   Lookahead:
     Enabled: 1
-    Time: 0
+    Time: 0.05
     Smoothing: 0
     IgnoreY: 0
 --- !u!114 &778203629
@@ -3677,7 +3677,7 @@ MonoBehaviour:
       Height: 2.25
     Bottom:
       Radius: 3
-      Height: 0
+      Height: 0.5
     SplineCurvature: 0.5
   RecenteringTarget: 2
   HorizontalAxis:
@@ -12368,6 +12368,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1348416074}
     m_Modifications:
+    - target: {fileID: 1422881488204085616, guid: 3c14c4f5c15a6cb43877e2a21af20bfd, type: 3}
+      propertyPath: wantedScreen
+      value: Level1Scene
+      objectReference: {fileID: 0}
     - target: {fileID: 2151729742627357824, guid: 3c14c4f5c15a6cb43877e2a21af20bfd, type: 3}
       propertyPath: m_Name
       value: ExitHolder

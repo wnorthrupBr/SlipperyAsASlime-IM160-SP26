@@ -6314,7 +6314,7 @@ MonoBehaviour:
   Damping: {x: 0.5, y: 0.5}
   Lookahead:
     Enabled: 1
-    Time: 0
+    Time: 0.05
     Smoothing: 0
     IgnoreY: 0
 --- !u!114 &778203629
@@ -6347,7 +6347,7 @@ MonoBehaviour:
       Height: 2.25
     Bottom:
       Radius: 3
-      Height: 0
+      Height: 0.5
     SplineCurvature: 0.5
   RecenteringTarget: 2
   HorizontalAxis:
@@ -13491,7 +13491,7 @@ GameObject:
   - component: {fileID: 1646375673}
   - component: {fileID: 1646375672}
   m_Layer: 0
-  m_Name: Point Light (1)
+  m_Name: Point Light2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14508,7 +14508,7 @@ GameObject:
   - component: {fileID: 1730944393}
   - component: {fileID: 1730944392}
   m_Layer: 0
-  m_Name: Point Light
+  m_Name: Point Light1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18410,6 +18410,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1422881488204085616, guid: 3c14c4f5c15a6cb43877e2a21af20bfd, type: 3}
       propertyPath: wantedScene
+      value: Level2Scene
+      objectReference: {fileID: 0}
+    - target: {fileID: 1422881488204085616, guid: 3c14c4f5c15a6cb43877e2a21af20bfd, type: 3}
+      propertyPath: wantedScreen
       value: Level2Scene
       objectReference: {fileID: 0}
     - target: {fileID: 2151729742627357824, guid: 3c14c4f5c15a6cb43877e2a21af20bfd, type: 3}
