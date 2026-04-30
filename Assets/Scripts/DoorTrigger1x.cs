@@ -16,6 +16,7 @@ public class DoorTrigger1x : DoorTrigger
     /// <param name="other"></param>
     public override void OnTriggerExit(Collider other)
     {
+        this.gameObject.SetActive(false);
         Debug.Log("Dont Close!");
     }
 }

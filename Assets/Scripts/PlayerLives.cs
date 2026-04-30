@@ -12,6 +12,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerLives : MonoBehaviour
 {
+    [SerializeField] AudioSource deathSound;
+    [SerializeField] AudioSource respawnSound;
     [SerializeField] private float reloadDelay;
     [SerializeField] private float lowestYPos;
     private bool isDead;
@@ -61,6 +63,8 @@ public class PlayerLives : MonoBehaviour
     {
         isDead = true;
 
+        deathSound.Play();
+
         //player cant move
         GetComponent<Rigidbody>().isKinematic = true;
         GetComponent<PlayerMove>().enabled = false;
@@ -92,6 +96,8 @@ public class PlayerLives : MonoBehaviour
 
         //move player to spawnpoint
         this.gameObject.transform.root.position = spawnPoint;
+
+        respawnSound.Play();
     }
 
     /// <summary>

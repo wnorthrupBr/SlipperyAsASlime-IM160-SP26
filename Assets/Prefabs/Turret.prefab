@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba42e7e62feeeeb4e8cf73d8a5777596, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trackingSpeed: 100
+  trackingSpeed: 70
   target: {fileID: 0}
 --- !u!1 &3624875533651156474
 GameObject:
