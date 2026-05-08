@@ -12,6 +12,8 @@ using UnityEngine.SceneManagement;
 
 public class ScreenController : MonoBehaviour
 {
+    [SerializeField] private string wantedScreen;
+
     /// <summary>
     /// Unlocks mouse at start
     /// </summary>
@@ -25,7 +27,7 @@ public class ScreenController : MonoBehaviour
     /// </summary>
     public void LoadFirstLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(wantedScreen);
     }
 
     /// <summary>

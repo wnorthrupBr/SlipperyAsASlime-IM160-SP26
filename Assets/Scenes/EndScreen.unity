@@ -935,6 +935,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24bb2c667184c2241bdee55033841fb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wantedScreen: TutorialLevelScene
 --- !u!1 &2102967035
 GameObject:
   m_ObjectHideFlags: 0

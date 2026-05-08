@@ -11,6 +11,8 @@ using UnityEngine.SceneManagement;
 
 public class ExitController : MonoBehaviour
 {
+    [SerializeField] private string wantedScreen;
+
     /// <summary>
     /// loads next scene on contact with exit
     /// </summary>
@@ -20,7 +22,7 @@ public class ExitController : MonoBehaviour
         if (collidingObject.transform.CompareTag("Player"))
         {
             //loads the next scene in the Build Profiles->Scene List
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            SceneManager.LoadScene(wantedScreen);
         }
     }
 }
