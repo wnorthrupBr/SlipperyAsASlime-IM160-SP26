@@ -576,7 +576,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orientation: {fileID: 1791849043466257536}
-  playerSpeed: 20
+  playerSpeed: 21
   slowSpeed: 0.25
 --- !u!114 &2615988024542686909
 MonoBehaviour:

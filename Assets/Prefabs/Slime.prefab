@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orientation: {fileID: 7105150978054687731}
-  playerSpeed: 20
+  playerSpeed: 21
   slowSpeed: 0.25
 --- !u!114 &7790917789248389886
 MonoBehaviour:
@@ -243,6 +243,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc1a477504e0324429dc7ebb3d2a3041, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathSound: {fileID: 0}
+  respawnSound: {fileID: 0}
   reloadDelay: 2
   lowestYPos: -1.5
   spawnPoint: {x: 0, y: 0, z: 0}

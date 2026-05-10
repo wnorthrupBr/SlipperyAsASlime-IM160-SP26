@@ -45,6 +45,9 @@ public class PauseController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// resumes the game when called
+    /// </summary>
     public void ResumeGame()
     {
         if(isPaused)
@@ -56,6 +59,9 @@ public class PauseController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// takes player to main menu when called
+    /// </summary>
     public void ReturnMainMenu()
     {
         if(isPaused)
@@ -66,6 +72,9 @@ public class PauseController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Restarts the level when called
+    /// </summary>
     public void RestartLevel()
     {
         if(isPaused)
@@ -76,6 +85,9 @@ public class PauseController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// closes the application when called
+    /// </summary>
     public void QuitGame()
     {
         if(isPaused)
@@ -85,6 +97,9 @@ public class PauseController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// unnbinnds the pause bind when called
+    /// </summary>
     private void OnDestroy()
     {
         pauseGame.performed -= PauseGamePerformed;
